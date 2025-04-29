@@ -1,7 +1,3 @@
-Here's the `README.md` file with two separate parts: one in English (ENG) and the other in French (FR).
-
----
-
 # URL Shortener
 
 ## ENG
