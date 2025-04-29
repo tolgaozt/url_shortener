@@ -53,10 +53,10 @@ Before running the project, make sure you have the following installed:
    dotnet run
    ```
 
-7. Access the Swagger interface at:
+7. Access the UI interface at:
 
    ```
-   http://localhost:5000/swagger
+   http://localhost:5260
    ```
 
 ### 🚀 Features
@@ -135,10 +135,10 @@ Avant d'exécuter le projet, assurez-vous d'avoir installé les éléments suiva
    dotnet run
    ```
 
-7. Accédez à l'interface Swagger à l'adresse suivante :
+7. Accédez à l'interface UI à l'adresse suivante :
 
    ```
-   http://localhost:5000/swagger
+   http://localhost:5260
    ```
 
 ### 🚀 Fonctionnalités
