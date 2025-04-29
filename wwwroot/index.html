@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>URL Shortener</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background-color: #f2f4f8;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .container {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+    }
+    h1 {
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+      color: #333;
+    }
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #result {
+      margin-top: 1rem;
+      font-size: 1rem;
+      word-break: break-all;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    #shortLink {
+      color: #007bff;
+      text-decoration: none;
+    }
+    .copy-btn {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.9rem;
+      background-color: #28a745;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      cursor: pointer;
+    }
+    .copy-btn:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Raccourcisseur d’URL</h1>
+    <input type="text" id="urlInput" placeholder="Collez votre lien ici…" />
+    <button onclick="shortenUrl()">Raccourcir</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    async function shortenUrl() {
+      const url = document.getElementById('urlInput').value;
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = '';
+
+      if (!url.trim()) {
+        resultDiv.textContent = "Veuillez entrer une URL.";
+        return;
+      }
+
+      const response = await fetch('/url', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(url)
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+
+        resultDiv.innerHTML = `
+          <a id="shortLink" href="${data.shortUrl}" target="_blank">${data.shortUrl}</a>
+          <button class="copy-btn" onclick="copyToClipboard('${data.shortUrl}')">Copier</button>
+        `;
+      } else {
+        const errorText = await response.text();
+        resultDiv.textContent = "Erreur : " + errorText;
+      }
+    }
+
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Lien copié dans le presse-papier !");
+      }).catch(err => {
+        console.error('Erreur de copie : ', err);
+      });
+    }
+  </script>
+</body>
+</html>
