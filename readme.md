@@ -73,9 +73,6 @@ Before running the project, make sure you have the following installed:
 - **Expiration of links**: Automatically expire shortened URLs after a certain period.
 - **Admin Dashboard**: Create an admin dashboard in React or Vue for URL management.
 
-### 🧑‍💻 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ### 🤝 Acknowledgements
 
@@ -158,9 +155,6 @@ Avant d'exécuter le projet, assurez-vous d'avoir installé les éléments suiva
 - **Expiration des liens** : Expiration automatique des URL raccourcies après une certaine période.
 - **Dashboard admin** : Créer un tableau de bord admin en React ou Vue pour la gestion des URL.
 
-### 🧑‍💻 Licence
-
-Ce projet est sous licence MIT - consultez le fichier [LICENSE](LICENSE) pour plus de détails.
 
 ### 🤝 Remerciements
 
